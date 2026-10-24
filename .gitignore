@@ -1,0 +1,18 @@
+#AL
+*.app
+.alpackages/
+.snapshots/
+.alcache/
+.altemplates/
+launch.json
+rad.json
+
+#VS Code
+.vscode/launch.json
+.vscode/.alcache/
+.vscode/.altemplates/
+
+#Other
+.DS_Store
+Thumbs.db
+*.bak

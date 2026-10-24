@@ -1,0 +1,33 @@
+{
+  "id": "5d7e2c41-9b3a-4f6e-a8d2-1c0b7e9f3a65",
+  "name": "BC Time Series Demand Forecast",
+  "publisher": "GMSOFT Limited",
+  "version": "1.0.0.0",
+  "brief": "Turn sales or consumption history into a Business Central demand forecast for MPS and MRP, using codeunit 2000 Time Series Management.",
+  "description": "Sample extension that reads posted sales (or consumption) from the item ledger, sends the history to the Business Central time series service (codeunit 2000 \"Time Series Management\", Azure AI) and writes the result as demand forecast entries. MPS uses a sales item forecast, MRP a component forecast. MIT licensed, free, open source.",
+  "privacyStatement": "https://gmsoft.co.uk/privacy",
+  "EULA": "https://github.com/GmsoftLtd/bc-demand-forecast-mps-mrp/blob/main/LICENSE",
+  "help": "https://github.com/GmsoftLtd/bc-demand-forecast-mps-mrp",
+  "url": "https://github.com/GmsoftLtd/bc-demand-forecast-mps-mrp",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "29.0.0.0",
+  "idRanges": [
+    {
+      "from": 50500,
+      "to": 50599
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "18.0",
+  "target": "Cloud",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
