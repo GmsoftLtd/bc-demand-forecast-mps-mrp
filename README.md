@@ -151,7 +151,9 @@ It writes only Demand Forecast Entries (and Inventory Setup if you choose). Dele
 - The model parameter is an Option: 0 ARIMA, 1 ETS, 2 STL, 3 ETS+ARIMA, 4 ETS+STL, 5 ALL, 6 TBATS. STL needs more than two years of data.
 - Items are sent 50 per call to avoid service time-outs (`SetBatchSize`).
 - Forecast at item level (blank location and variant). See codeunit 50501 for location level.
-- Do not forecast make-to-order (Order policy) end items, and do not combine a forecast with a reorder point on the same item: you count demand twice.
+- Use **Consumption** only when the parent cannot be forecast, typically the stocked components of make-to-order items. Business Central reduces a component forecast by the BOM need, so it does not add up on top of it. Spares sold to customers are Sale entries: forecast them with **Sales**.
+- Do not forecast make-to-order (Order policy) end items, and do not combine a forecast with a reorder point on the same item: you count demand twice. Lot-for-Lot suits most forecast items, but not all: stable, cheap purchased parts are often better on a reorder point and safety stock.
+- Test before you trust: hold back the last months, compare WAPE and bias with a naive forecast (last month, or same month last year). If the model does not beat naive on an item, do not use it there. 24 months is a start; 36 is better for seasonal items.
 
 ## Build
 
