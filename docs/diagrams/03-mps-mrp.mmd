@@ -1,0 +1,22 @@
+flowchart TB
+    subgraph MPS["MPS: independent demand (end items)"]
+        direction TB
+        SO["Sales in the period<br/>open orders + shipped"] --> NETMPS["Remaining forecast<br/>= forecast - sales<br/>(never below 0)"]
+        SF["Sales item forecast<br/>from Sale history"] --> NETMPS
+        SO --> DEM1["Demand profile"]
+        NETMPS --> DEM1
+        DEM1 --> PPO["Planned production orders<br/>for finished goods"]
+    end
+    subgraph MRP["MRP: dependent demand (components)"]
+        direction TB
+        DEP["Component need from<br/>planned production orders"] --> NETMRP["Remaining component forecast<br/>= forecast - component need"]
+        CF["Component forecast<br/>from Consumption history"] --> NETMRP
+        DEP --> DEM2["Demand profile"]
+        NETMRP --> DEM2
+        DEM2 --> PPU["Planned purchase orders and<br/>lower-level production orders"]
+    end
+    PPO -->|BOM explosion| DEP
+    classDef f fill:#fff1e8,stroke:#ff6b35,color:#0b1f3a;
+    classDef n fill:#e8f0fb,stroke:#0b1f3a,color:#0b1f3a;
+    class SF,CF f;
+    class SO,NETMPS,DEM1,PPO,DEP,NETMRP,DEM2,PPU n;

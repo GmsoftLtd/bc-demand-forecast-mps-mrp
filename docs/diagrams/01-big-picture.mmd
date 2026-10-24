@@ -1,0 +1,18 @@
+flowchart TB
+    subgraph A["1. Forecast with codeunit 2000"]
+        direction LR
+        ILE[("Item Ledger Entries<br/>Sale or Consumption")] -->|PrepareData| TSB["Time Series Buffer<br/>table 2000"]
+        TSB -->|Forecast| SVC{{"Azure AI<br/>time series service"}}
+        SVC -->|GetForecast| TSF["Time Series Forecast<br/>table 2001"]
+    end
+    subgraph B["2. Plan with MPS and MRP"]
+        direction LR
+        PFE[("Demand Forecast<br/>Entries")] --> SETUP["Inventory Setup<br/>Current Demand Forecast"]
+        SETUP --> PLAN["Planning Worksheet<br/>Calculate Regenerative Plan"]
+        PLAN --> PO["Planned production<br/>and purchase orders"]
+    end
+    TSF -->|"your code: Qty = -Value"| PFE
+    classDef bc fill:#e8f0fb,stroke:#0b1f3a,color:#0b1f3a;
+    classDef ai fill:#fff1e8,stroke:#ff6b35,color:#0b1f3a;
+    class ILE,TSB,TSF,PFE,SETUP,PLAN,PO bc;
+    class SVC ai;

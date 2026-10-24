@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    participant R as Report "Create Time Series Forecast"
+    participant B as Codeunit "Demand Forecast Builder"
+    participant T as Codeunit 2000 "Time Series Management"
+    participant S as Azure AI time series service
+    participant F as Production Forecast Entry
+    R->>B: SetParameters(name, source, period, history, horizon, model...)
+    R->>B: ForecastItems(Item)
+    loop each batch of items
+        B->>T: Initialize('', NoKey, 0, true)
+        B->>T: PrepareData(ItemLedgerEntry, "Item No.", "Posting Date", Quantity, Month, start, 24)
+        Note right of T: sums Quantity per item and month,<br/>fills empty months with 0
+        B->>T: Forecast(6, 80, ARIMA)
+        T->>S: send series
+        S-->>T: forecast + range
+        B->>T: GetForecast(TempTimeSeriesForecast)
+        B->>F: delete future entries, insert new ones (Qty = -Value)
+    end
+    R->>B: SetAsCurrentDemandForecast() (optional)
