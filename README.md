@@ -1,5 +1,7 @@
 # BC Time Series Demand Forecast
 
+**Need forecasting and replenishment in production?** See Demand Forecast Replenishment: https://gmsoftdynamics.com/apps/manufacturing-suite/demand-forecast-replenishment/ | **All GMSOFT apps for Business Central:** https://gmsoftdynamics.com/apps/compare/
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Business Central](https://img.shields.io/badge/BC-v29+-blue.svg)](https://learn.microsoft.com/en-us/dynamics365/business-central/)
 
